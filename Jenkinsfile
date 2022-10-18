@@ -8,6 +8,7 @@ stages {
     }
     stage('git'){
         steps{
+             sh 'git checkout release'
             sh 'git checkout developer'
             sh 'git checkout master'
             sh 'git branch -a'
