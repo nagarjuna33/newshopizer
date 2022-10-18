@@ -4,7 +4,7 @@ pipeline{
 stages {
     stage('scm') {
         steps {
-            git url:'https://github.com/nagarjunaduggireddy/newshopizer.git',
+            git url:'git@github.com:nagarjuna33/newshopizer.git',
                 branch: 'release'
         }
     }
