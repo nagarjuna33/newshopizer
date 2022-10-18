@@ -16,25 +16,11 @@ stages {
             sh 'git push -u origin master'
         }
     }
-    stage ('Archive JUnit test') {
+    stage ('build') {
         steps{
-            junit testResults : '**/surefire-reports/*.xml'
+            sh 'mvn package'
         }
     }
-    stage('artifactorydeploy') {
-        steps {
-            rtMavenDeployer  id : 'MAVEN_DEPLOYER',
-                    releaseRepo: 'default-libs-release-local',
-                    snapshotRepo: 'default-libs-snapshot-local',
-                       serverId : 'Shopizer-Artifact'
-        }
-    }
-        stage('artifactoryrun') {
-        steps {
-            rtMavenRun        pom : 'pom.xml',
-                            goals : 'package',
-                        deployerId: "MAVEN_DEPLOYER"
-        }
-    }
+    
   }
 }
